@@ -5,4 +5,9 @@ Setelah menjalankan cargo run --bin server dan setiap klien dijalankan dengan  c
 
 ###### 2.2. Modifying the websocket port
 ![2.2](assets/images/2.2.png)
-Ketika client dan server menggunakan port yang sama, aplikasi berjalan lancar seperti sebelumnya. Namun, jika kita mengubah salah satu port, misalnya port client saya ubah menjadi 2000 dan port server tetap 8080, akan terjadi kesalahan. Saat saya menjalankan cargo run --bin client, akan terjadi error karena port pada client tidak memiliki connection.
+Ketika client dan server menggunakan port yang sama, aplikasi berjalan lancar seperti sebelumnya. Namun, jika kita mengubah salah satu port, misalnya port client saya ubah menjadi 2000 dan port server tetap 8080, akan terjadi kesalahan. Saat saya menjalankan cargo run --bin client, akan terjadi error karena port pada client tidak memiliki connection, seperti berikut.
+![2.2(2)](assets/images/2.2(2).png)
+
+###### 2.3. Small changes. Add some information to client
+Saya mengganti salah satu baris kode pada server.rs menjadi bcast_tx.send(format!("{addr} : {text}"))?; agar ketika bcast.tx (sender) mengirimkan pesan ke setiap client, ia juga akan memberikan IP sender melalui variabel addr, seperti berikut.
+![2.3](assets/images/2.3.png)
